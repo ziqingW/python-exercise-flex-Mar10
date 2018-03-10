@@ -8,13 +8,15 @@ class Vehicle:
         print(self.year, self.make, self.model)
     
 class Person:
+    
+    friends = []
+    greeting_count = 0
+    greeted = []
+    
     def __init__(self, name, email, phone):
         self.name = name
         self.email = email
         self.phone = phone
-        self.friends = []
-        self.greeting_count = 0
-        self.greeted = []
     
     def __str__(self):
         return 'Person {}: {}, {}'.format(self.name, self.email, self.phone)
