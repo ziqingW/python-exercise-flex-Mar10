@@ -15,10 +15,14 @@ class Character:
         if self.name == "hero":
             print("You have {} health and {} power.".format(self.health, self.power))
         else:
-            print("The {} has {} health and {} power.".format(self.name, self.health, self.power))
+            if self.health == None:
+                print("The {} is undead, has no health point and {} power.".format(self.name, self.power))
+            else:
+                print("The {} has {} health and {} power.".format(self.name, self.health, self.power))
     
     def attack(self, enemy):
-        enemy.health -= self.power
+        if enemy.health != None:
+            enemy.health -= self.power
         if self.name == "hero":
             print("You did {} damage to the {}.".format(self.power, enemy.name))
             if not enemy.alive():
@@ -28,27 +32,32 @@ class Character:
             if not enemy.alive():
                 print("You are dead.")
             
+            
 class Hero(Character):
     pass
 
 class Goblin(Character):
     pass
 
-hero = Hero("hero", 10, 5)
-goblin = Goblin("goblin", 6, 2)
+class Zombie(Character):
+    def alive(self):
+        return True
+        
+player = Hero("hero", 10, 5)
+enemy = Zombie("zombie", None, 2)
 
-while goblin.alive() and hero.alive():
-    hero.print_status()
-    goblin.print_status()
+while enemy.alive() and player.alive():
+    player.print_status()
+    enemy.print_status()
     print()
     print("What do you want to do?")
-    print("1. fight goblin")
+    print("1. fight {}".format(enemy.name))
     print("2. do nothing")
     print("3. flee")
     print("> ", end =' ')
     raw_input = input()        
     if raw_input == "1":
-        hero.attack(goblin)
+        player.attack(enemy)
     elif raw_input == "2":
         pass
     elif raw_input == "3":
@@ -57,5 +66,5 @@ while goblin.alive() and hero.alive():
     else:
         print("Invalid input {}".format(raw_input))
     
-    if goblin.alive():
-        goblin.attack(hero)
+    if enemy.alive():
+        enemy.attack(player)
