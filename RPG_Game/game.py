@@ -1,5 +1,4 @@
 import setPath
-
 from goblin import Goblin
 from zombie import Zombie
 from hero import Hero
