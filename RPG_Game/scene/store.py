@@ -1,25 +1,28 @@
 import basic_items
 
-potion = basic_items.Potion("healing potion", 10, 10)
-holyoil = basic_items.Holyoil("holyoil", 15)
+potion = basic_items.Potion("healing potion", 15, 10)
+holyoil = basic_items.Holyoil("holy oil", 12)
 amulet = basic_items.Amulet("amulet", 50)
-leather = basic_items.Armor("leather armor", 20, 1)
-plate = basic_items.Armor("plate armor", 45, 2)
-steelSword = basic_items.Weapon("steel sword", 20, 2)
-bastardSword = basic_items.Weapon("bastard sword", 50, 4)
-evadeRing = basic_items.Ring("evade ring", 50, "evade")
-criticalRing = basic_items.Ring("cri ring", 50, "critical")
-stuffs = [potion, holyoil, amulet, leather, plate, steelSword, bastardSword, evadeRing, criticalRing]
+leather = basic_items.Armor("leather armor", 30, 2)
+longSword = basic_items.Weapon("long sword", 32, 2)
+evadeRing = basic_items.Ring("evade ring", 50, "20% dodge")
+criticalRing = basic_items.Ring("critical ring", 50, "10% critical")
+swapWand = basic_items.Wand("swap wand", 50)
+stuffs = [potion, holyoil, amulet, leather, longSword, evadeRing, criticalRing, swapWand]
 
 class Store:
     def __init__(self):
         self.storage = stuffs
     
-    def __str__(self):
-        return "About five yards in front of you, the dim flame in a lantern throbbed as will die out anytime. \nA hag behind the light and grinned to you. \"Any spare coin? I have many good stuff for you.\""
+    def description_1(self):
+        print("")
+        return "About five yards in front of you, the bleak flare from a lantern throbbed as it would die out at anytime. \nA humped crone behind the light grinned to you. \"Any spare coin? I have so many shining things for you.\""
     
+    def description_2(self):
+        print("")
+        return "You saw the same crone emerged ahead with the same appearance. She grinned to you again:\"Wanna see something good?\"\nAre they just twins?"
+        
     def store_engine(self, player):
-        print(self.__str__())
         while True:
             print("")
             print("What do you want to do? ")
@@ -35,7 +38,7 @@ class Store:
                 print("-" * 20)
                 print("What do you want to buy?")
                 for i in range(len(self.storage)):
-                    print("{}. {} -- {} coins".format(i+1, stuffs[i].name, stuffs[i].price))
+                    print("{}. {} -- {}coins  {}".format(i+1, stuffs[i].name.capitalize(), stuffs[i].price, stuffs[i].descript()))
                 print("")
                 print("0. Back")
                 print("Your coins: {}".format(player.coin))
@@ -59,7 +62,7 @@ class Store:
                     print("What do you want to sell?")
                     print("=" * 20)
                     for i in range(len(allitems)):
-                        print("{}. {}".format(i+1, allitems[i].name))
+                        print("{}. {} -- {}coins  {}".format(i+1, allitems[i].name.capitalize(), allitems[i].price, allitems[i].descript()))
                     print("")
                     print("0. Back")
                     print("=" * 20)

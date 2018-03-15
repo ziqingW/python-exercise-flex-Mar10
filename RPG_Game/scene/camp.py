@@ -1,9 +1,9 @@
 class Camp:
-    def explore(self, player):
+    def explore(self, player, enemy = None):
         while True:
+            print("You sat next to the campfire, gazing at the flame. \nYou believed you saw something, but it vanished instantly.")
             print("")
             print("What's your next step?")
-            print("")
             print("1. Go further")
             print("2. Drink potion")
             print("3. Change equipments")
@@ -60,7 +60,7 @@ class Camp:
                             print("Your equipments:")
                             print("")
                             for i in range(len(player.equipitems)):
-                                print("{}. {}".format(i+1, player.equipitems[i].name))
+                                print("{}. {}  {}".format(i+1, player.equipitems[i].name.capitalize(), player.equipitems[i].descript()))
                             print("")
                             print("0. Back")
                             print("-" * 20)
@@ -82,7 +82,7 @@ class Camp:
                         if player.currentEquip != []:
                             print("You have equipped:")
                             for j in range(len(player.currentEquip)):
-                                print("{}. {}".format(j+1, player.currentEquip[j].name))
+                                print("{}. {}  {}".format(j+1, player.currentEquip[j].name.capitalize(), player.currentEquip[j].descript()))
                             print("")
                             print("0. Back")
                             print("Which one do you want to unequip?")
@@ -117,12 +117,12 @@ class Camp:
                     print("nothing")
                 else:
                     for item in allitem:
-                        print(" * {}".format(item.name))
+                        print(" * {} -- {}".format(item.name.capitalize(), item.descript()))
                 print("-" * 10)
                 print("Coins: {}".format(player.coin))
                 print("")
             elif answer == "5":
-                print("You can't even grasp your own miserable fate.")
+                print("Pathetic, you can't even grasp your own fate.")
                 print("You died.")
                 exit()
             else:

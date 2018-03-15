@@ -6,20 +6,22 @@ import battle
 import basic_items
 import camp
 import random
+import time
+
 
 if __name__ == "__main__":
-    hero = hero.Hero("hero", 1000, 10)
-    goblin = monsters.Goblin("goblin", 12, 3)
-    gargoyle = monsters.Medic("gargoyle", 25, 5)
-    shadow = monsters.Shadow("shadow", 1, 8)
-    ooze = monsters.Slime("acid ooze", 30, 9)
-    spider = monsters.Spider("Giant spider", 40, 11)
-    zombie = monsters.Undead("zombie", 40, 10)
-    minotaur = monsters.Minotaur("minotaur", 200, 18)
+    hero = hero.Hero("hero", 80, 5)
+    goblin = monsters.Goblin("goblin", 16, 2)
+    gargoyle = monsters.Medic("gargoyle", 25, 3)
+    shadow = monsters.Shadow("shadow", 1, 4)
+    ooze = monsters.Slime("acid ooze", 30, 5)
+    spider = monsters.Spider("Giant spider", 40, 6)
+    zombie = monsters.Undead("zombie", 50, 8)
+    ogre = monsters.Ogre("ogre", 180, 10)
     peddler = store.Store()
-    encounters_1 = [ooze] #gargoyle, shadow]
-    encounters_2 = [zombie] 
-    boss = [minotaur]
+    encounters_1 = [goblin, gargoyle, shadow]
+    encounters_2 = [ooze, zombie, spider] 
+    boss = [ogre]
     battleEngine = battle.Battlefield()
     campfire = camp.Camp()
 
@@ -37,7 +39,7 @@ def results(player, enemy):
             print("")
             exit()
         player.loot(enemy)
-        battleEngine.reset(player)
+        player.reset()
         battleEngine.turn = 1
     elif player.alive(enemy) and enemy.alive(player):
         print("Goodbye. You will be remembered as a coward.")
@@ -48,11 +50,13 @@ def results(player, enemy):
         else:
             print("You died, in honor.")
         print("Game Over")
+        print("")
         exit()
 
 def process(encounters):
     for encounter in encounters:
         campfire.explore(hero)
+        time.sleep(0.8)
         print("")
         print(encounter)
         print("")
@@ -62,17 +66,21 @@ def process(encounters):
         print("")
 
 def main():
+    print("*" * 40)
+    print("*{0}Welcome to the adventure{0}*".format(" " * 7))
+    print("*" * 40)
+    print("You are or was once a knight, although what left on you now is only a old blunt sword.")
+    print("An entrance of dungeon emerged in the front darkness of you. From the dark deep, you heard unhuman wailings.")
+    print("This is the final chance to reseize your long lost honor. You unsheathed your sword and stepped into the darkness.")
     print("")
-    print("")
-    print("You are a knight, or used to be, although what left of you now is only a blunt sword.")
-    print("In front of you, rose an entrance of cave. From the darkness, you hear unhuman wailings.")
-    print("This is the final chance to reseize your long lost honor. You unsheath your sword and walk into the dark.")
+    print("-" * 20)
     process(encounters_1)
     campfire.explore(hero)
+    print(peddler.description_1())
     peddler.store_engine(hero)
-    # process(encounters_2)
-    # campfire.explore(hero)
-    # peddler.store_engine(hero)
+    process(encounters_2)
+    print(peddler.description_2())
+    peddler.store_engine(hero)
     process(boss)
 
 if __name__ == "__main__":

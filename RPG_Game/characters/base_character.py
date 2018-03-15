@@ -1,31 +1,71 @@
 import random
+import auras
+import time
 
 class Character:
-    
     def __init__(self, name, maxhealth, regpower):
         self.name = name
         self.maxhealth = maxhealth
         self.health = self.maxhealth
         self.regpower = regpower
         self.power = self.regpower
-        self.critical = 0
+        self.critical = 0.1
         self.critical_fold = 2
-        self.reghit = 0.85
+        self.reghit = 0.9
         self.hit = self.reghit
         self.regdodge = 0.15
         self.dodge = self.regdodge
         self.armor = 0
-        self.status = "normal"
+        self.status = auras.auraNormal
         
+    def reset(self):
+        self.status.begin = 0
+        self.status = auras.auraNormal
+        self.hit = self.reghit
+        self.dodge = self.regdodge
+        self.power = self.regpower
+
+    def aura_checker(self):
+        if self.status.name != "normal":
+            if self.status.begin == 0:
+                self.status.begin = 1
+            elif self.status.begin != 0 and self.status.begin < self.status.end:
+                self.status.begin += 1
+                if self.status.begin == self.status.end:
+                    self.reset()
+        else:
+            pass
+     
     def alive(self, player = None):
         return self.health > 0
+        
+    def get_aura(self, aura, enemy = None):
+        self.status = aura
+        self.status.begin = 0
+        if aura.name == "normal":
+            pass
+        elif aura.name == "blessed":
+            pass
+        elif aura.name == "protected":
+            self.dodge = 1
+        elif aura.name == "enraged":
+            self.power += 3
+            self.hit -= 0.1
+        elif aura.name == "slowed":
+            self.hit *= 0.5
+        elif aura.name == "corrupted":
+            self.power *= 0.75
+        elif aura.name == "paralyzed":
+            self.dodge = 0
+        elif aura.name == "swapped":
+            enemy.status = aura
             
     def print_status(self):
         if self.health > self.maxhealth:
             self.health = self.maxhealth
         if self.health < 0:
             self.health = 0
-        print("{0} -- Health: {1}/{2}\t\tPower: {3}\t\tstatus: {4}".format(self.name.capitalize(), self.health, self.maxhealth, int(self.power), self.status))
+        print("{0} -- Health: {1}/{2}\tPower: {3}\tArmor: {4}\tstatus: {5}".format(self.name.capitalize(), self.health, self.maxhealth, int(self.power), self.armor, self.status.name))
     
     def hitin(self, enemy):
         return random.random() <= self.hit * (1 - enemy.dodge)
