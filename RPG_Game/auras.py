@@ -6,7 +6,7 @@ class Aura:
         
 auraNormal = Aura("normal", 0)
 auraSlowed = Aura("slowed", 2)
-auraBlessed = Aura("blessed", 3)
+auraBlessed = Aura("blessed", 10)
 auraEnraged = Aura("enraged", 2)
 auraCorrupted = Aura("corrupted", 2)
 auraSwapped = Aura("swapped", 1)

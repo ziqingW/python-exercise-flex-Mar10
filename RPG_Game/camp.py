@@ -8,6 +8,7 @@ class Camp:
             print("2. Drink potion")
             print("3. Change equipments")
             print("4. Check status")
+            print("")
             print("5. Retire")
             print("-" * 20)
             answer = input("> ")
@@ -108,6 +109,7 @@ class Camp:
             elif answer == "4":
                 print("Your status:")
                 print("Health: {}/{} \tPower: {} \tArmor: {}".format(player.health, player.maxhealth, player.power, player.armor))
+                print("Hit rate: {}% -- Critical rate: {}% -- Dodge rate: {}%".format(player.hit * 100, player.critical * 100, player.dodge * 100))
                 for item in player.currentEquip:
                     print("Equipped: {}".format(item.name))
                 print("-" * 10)    

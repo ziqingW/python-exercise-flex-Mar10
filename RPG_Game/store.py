@@ -1,6 +1,6 @@
 import basic_items
 
-potion = basic_items.Potion("healing potion", 15, 10)
+potion = basic_items.Potion("healing potion", 15, 15)
 holyoil = basic_items.Holyoil("holy oil", 12)
 amulet = basic_items.Amulet("amulet", 50)
 leather = basic_items.Armor("leather armor", 30, 2)
@@ -38,7 +38,7 @@ class Store:
                 print("-" * 20)
                 print("What do you want to buy?")
                 for i in range(len(self.storage)):
-                    print("{}. {} -- {}coins  {}".format(i+1, stuffs[i].name.capitalize(), stuffs[i].price, stuffs[i].descript()))
+                    print("{}. {} -- {} coins -- {}".format(i+1, stuffs[i].name.capitalize(), stuffs[i].price, stuffs[i].descript()))
                 print("")
                 print("0. Back")
                 print("Your coins: {}".format(player.coin))
@@ -98,7 +98,7 @@ class Store:
         print("You sold {}, get {} coins back.".format(item.name, item.price))
         
     def buy(self, player, item):
-        if player.coin > item.price:
+        if player.coin >= item.price:
             if item.usable:
                 player.inventory_add(item)
             else:

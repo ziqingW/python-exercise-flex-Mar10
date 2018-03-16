@@ -65,7 +65,7 @@ class Character:
             self.health = self.maxhealth
         if self.health < 0:
             self.health = 0
-        print("{0} -- Health: {1}/{2}\tPower: {3}\tArmor: {4}\tstatus: {5}".format(self.name.capitalize(), self.health, self.maxhealth, int(self.power), self.armor, self.status.name))
+        print("{0} -- Health: {1}/{2}  Power: {3}  Armor: {4}  status: {5}".format(self.name.capitalize(), self.health, self.maxhealth, int(self.power), self.armor, self.status.name))
     
     def hitin(self, enemy):
         return random.random() <= self.hit * (1 - enemy.dodge)

@@ -73,7 +73,7 @@ class Undead(Character):
         super().__init__(name, health, power)
         self.bounty = random.randint(46, 52)
         self.armor = 1
-        self.reghit = 0.7
+        self.reghit = 0.65
         self.hit = self.reghit
     
     def alive(self, player):
@@ -89,10 +89,10 @@ class Ogre(Character):
     def __init__(self, name, health, power):
         super().__init__(name, health, power)
         self.bounty = 300
-        self.reghit = 0.7
+        self.reghit = 0.65
         self.critical = 0.2
         self.hit = self.reghit
-        self.armor = 3
+        self.armor = 2
     
     def roar(self):
         if random.random() <= 0.25:
