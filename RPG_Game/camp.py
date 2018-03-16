@@ -9,7 +9,7 @@ class Camp:
             print("3. Change equipments")
             print("4. Check status")
             print("")
-            print("5. Retire")
+            print("0. Retire")
             print("-" * 20)
             answer = input("> ")
             if answer == "1":
@@ -109,7 +109,7 @@ class Camp:
             elif answer == "4":
                 print("Your status:")
                 print("Health: {}/{} \tPower: {} \tArmor: {}".format(player.health, player.maxhealth, player.power, player.armor))
-                print("Hit rate: {}% -- Critical rate: {}% -- Dodge rate: {}%".format(player.hit * 100, player.critical * 100, player.dodge * 100))
+                print("Hit rate: {}% -- Critical rate: {}% -- Dodge rate: {}%".format(int(player.hit * 100), int(player.critical * 100), int(player.dodge * 100)))
                 for item in player.currentEquip:
                     print("Equipped: {}".format(item.name))
                 print("-" * 10)    
@@ -123,7 +123,7 @@ class Camp:
                 print("-" * 10)
                 print("Coins: {}".format(player.coin))
                 print("")
-            elif answer == "5":
+            elif answer == "0":
                 print("Pathetic, you can't even grasp your own fate.")
                 print("You died.")
                 exit()

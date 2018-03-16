@@ -84,6 +84,8 @@ class Store:
             elif answer == "3":
                 print("")
                 print("You ignored the peddler and started to leave. When you passed the hag, she bursted a hysterical laugh.")
+                print("")
+                print("")
                 break
             else:
                 print("Invalid input")

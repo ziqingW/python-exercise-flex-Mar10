@@ -15,6 +15,7 @@ class Hero(Character):
         self.inventory = []
         for i in range(3):
             self.inventory_add(store.potion)
+        self.inventory_add(store.holyoil)
         self.equipitems = []
         self.currentEquip = []
 

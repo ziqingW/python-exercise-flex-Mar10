@@ -8,7 +8,7 @@ import random
 import time
 
 if __name__ == "__main__":
-    hero = hero.Hero("hero", 80, 5)
+    hero = hero.Hero("hero", 100, 5)
     goblin = monsters.Goblin("goblin", 16, 2)
     gargoyle = monsters.Medic("gargoyle", 25, 3)
     shadow = monsters.Shadow("shadow", 1, 3)
@@ -67,8 +67,9 @@ def main():
     print("*" * 40)
     print("*{0}Welcome to the adventure{0}*".format(" " * 7))
     print("*" * 40)
+    print("{0}ver 2.2".format(" " * 30))
     print("")
-    print("You are or was once a knight, although what left on you now is only a old blunt sword.")
+    print("You are or was once a knight, although what left on you now is only an aged blunt sword.")
     print("An entrance of dungeon emerged in the front darkness of you. From the dark deep, you heard unhuman wailings.")
     print("This is the final chance to reseize your long lost honor. You unsheathed your sword and stepped into the darkness.")
     print("")
@@ -78,6 +79,7 @@ def main():
     print(peddler.description_1())
     peddler.store_engine(hero)
     process(encounters_2)
+    campfire.explore(hero)
     print(peddler.description_2())
     peddler.store_engine(hero)
     process(boss)

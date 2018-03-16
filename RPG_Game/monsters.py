@@ -50,7 +50,7 @@ class Slime(Character):
             print("The green ooze's soft body was strongly acidic, your weapon was corroded! (power decreases)")
             
     def __str__(self):
-        return "You saw a huge fluorescent body before you. Countless bubbles popped on and off inside it.\nYou poked it with the sword tip, which disturblingly sizzled."
+        return "You saw a huge fluorescent body before you. Countless bubbles popped on and off inside it.\nYou poked it with the sword tip, which disturblingly sizzled back."
             
 class Spider(Character):
     def __init__(self, name, health, power):
@@ -83,7 +83,7 @@ class Undead(Character):
             return self.health > -1
     
     def __str__(self):
-        return "A staggering animated corpse tried to get close to you from not far away. From the shattered armor on it you knew it was one of you once. \n** Undead can only be killed by blessed weapon."
+        return "A staggering animated corpse tried to get close to you from not far away. From the shattered armor on it you knew it was one of your kinds before. \n** Undead can only be killed by blessed weapon."
         
 class Ogre(Character):
     def __init__(self, name, health, power):
@@ -100,7 +100,7 @@ class Ogre(Character):
             print("Ogre made a deafening roar, its attacks become more deadly! (power + 3)")
     
     def stomp(self, enemy):
-        if self.health <= self.maxhealth * 0.5 and random.random() <= 1/3:
+        if self.health <= self.maxhealth * 0.5 and random.random() <= 0.2:
             print("Ogre made a heavy stomp in rage!")
             if self.hitin(enemy):
                 print("You are paralyzed by the shockwave!")
@@ -109,4 +109,4 @@ class Ogre(Character):
                 print("You evaded the shockwave!")
                 
     def __str__(self):
-        return "You saw a strong light shining ahead. An exit to the outer?! \nYou couldn't hold yourself but rushing towards the light. The earth suddenly began vigorously shaking in the middle of your sprint. \nYou stopped and squat, nearly deafened by a following growl. \nAfter you stood again, you saw that angry thing before you. It's a Ogre!"
+        return "You saw strong shining ahead. An escape to the outer world?! \nYou couldn't hold yourself but started rushing towards the light. The earth suddenly began vigorously shaking. \nYou stopped and squat, nearly deafened by a following growl. \nAfter you stood again, you saw that angry thing before you. It's a Ogre!"
