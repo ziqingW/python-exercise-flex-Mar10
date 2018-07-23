@@ -111,4 +111,3 @@ class Store:
         else:
             print("")
             print("You don't have enough money.")
-    
